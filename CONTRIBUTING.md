@@ -49,6 +49,8 @@ The WSLg system distro is built using docker build. We essentially start from a 
     git clone https://gitlab.freedesktop.org/mesa/mesa.git wslg/vendor/mesa -b mesa-23.1.0
     ```
 
+    > **NOTE:** Mesa is hosted on GitLab (`gitlab.freedesktop.org`), which `notice@0` / ClearlyDefined does not auto-harvest, so its license attribution is maintained manually in [`NOTICE-manual.txt`](NOTICE-manual.txt). When bumping the Mesa version, update the commit hash in both [`cgmanifest.json`](cgmanifest.json) and [`NOTICE-manual.txt`](NOTICE-manual.txt) together so the generated NOTICE stays in sync.
+
 3. Build the VHD. The easiest path is the helper script, which derives a version from `git describe`, captures each vendor's commit SHA, passes everything as `--build-arg`, runs `docker build`, exports the container, and converts to a VHD via `tar2ext4`:
 
     ```bash
